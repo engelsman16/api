@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "api"
+version = "0.0.1"
+description = "haapie"
+authors = ["Your Name <you@example.com>"]
+license = "n"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
