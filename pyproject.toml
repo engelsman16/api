@@ -7,7 +7,9 @@ license = "n"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.12"
+python = "3.12.3"
+fastapi = "^0.110.1"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
 
 
 [build-system]
