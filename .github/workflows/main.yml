@@ -1,13 +1,11 @@
 name: Build
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+
+on: push
+
 jobs:
-  sonarcloud:
+  SonarCloud:
     name: SonarCloud
+    run: echo "::debug::Starting SonarCloud analysis"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,3 +16,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
+  UnitTests:
+    name: Unit Tests
+    run: echo "::debug::Starting unit tests (pytest)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.3'
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+      - name: Run tests
+        run: |
+          poetry run pytest 
+  
